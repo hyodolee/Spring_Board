@@ -123,7 +123,7 @@ fileName.getBytes("utf-8"), "iso-8859-1") + "\"");
 		new File(uploadPath+fileName.replace(
 				'/',File.separatorChar)).delete();
 		//레코드 삭제
-		//boardService.deleteFile(fileName); 
+		boardService.deleteFile(fileName); 
 		
 		return new ResponseEntity<String>("deleted"
 				,HttpStatus.OK);

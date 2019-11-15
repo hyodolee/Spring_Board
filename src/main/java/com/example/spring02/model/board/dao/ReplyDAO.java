@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.spring02.model.board.dto.ReplyDTO;
 
 public interface ReplyDAO {
-	public List<ReplyDTO> list(int bno);
+	public List<ReplyDTO> list(int bno, int start, int end);
 	public int count(int bno);
 	public void create(ReplyDTO dto);
 }

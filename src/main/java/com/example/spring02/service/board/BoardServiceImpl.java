@@ -81,20 +81,21 @@ String search_option, String keyword,int start, int end)
 	@Override
 	public void increaseViewcnt(int bno, HttpSession session) 
 			throws Exception {
-		long update_time=0;
-		if(session.getAttribute("update_time_"+bno)!=null) {
-			//최근에 조회수를 올린 시간
-			update_time=
-					(long)session.getAttribute("update_time_"+bno);
-		}
-		long current_time=System.currentTimeMillis();
-		//일정 시간이 경과한 후 조회수 증가 처리
-		if(current_time - update_time > 5*1000) {
-			//조회수 증가 처리
-			boardDao.increateViewcnt(bno);
-			//조회수를 올린 시간 저장
-			session.setAttribute("update_time_"+bno, current_time);
-		}
+//		long update_time=0;
+//		if(session.getAttribute("update_time_"+bno)!=null) {
+//			//최근에 조회수를 올린 시간
+//			update_time=
+//					(long)session.getAttribute("update_time_"+bno);
+//		}
+//		long current_time=System.currentTimeMillis();
+//		//일정 시간이 경과한 후 조회수 증가 처리
+//		if(current_time - update_time > 5*1000) {
+//			//조회수 증가 처리
+//			boardDao.increateViewcnt(bno);
+//			//조회수를 올린 시간 저장
+//			session.setAttribute("update_time_"+bno, current_time);
+//		}
+		boardDao.increateViewcnt(bno);
 	}
 
 	@Override

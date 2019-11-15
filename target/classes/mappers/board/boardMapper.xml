@@ -37,16 +37,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by regdate desc	
 	</select>
 
-
-
 	<select id="listAll"
 resultType="com.example.spring02.model.board.dto.BoardDTO">
-		<include refid="paging_header" />
+		<!-- <include refid="paging_header" />
 			select bno,title,writer,name,regdate,viewcnt,show
   				,(select count(*) from reply where bno=b.bno) cnt					
 			from board b, member m
 			<include refid="search" />
 			order by bno desc   
+		<include refid="paging_footer" /> -->
+		
+		<include refid="paging_header" />
+			select bno,name,title,regdate,viewcnt
+				,(select count(*) from reply where bno=b.bno) cnt
+			from board b, member m
+			<include refid="search" />
+			order by bno desc
 		<include refid="paging_footer" />
 	</select>
 	<sql id="paging_header">
@@ -69,7 +75,7 @@ resultType="com.example.spring02.model.board.dto.BoardDTO">
 	
 	<sql id="search">
 		<choose>
-			<when test="search_option != 'all' ">
+			<!--  <when test="search_option != 'all' ">
 				where b.writer=m.userid 
 				    and show='Y'
 				    and ${search_option} like #{keyword}			
@@ -80,6 +86,17 @@ resultType="com.example.spring02.model.board.dto.BoardDTO">
 				    and (name like #{keyword} 
 				        or title like #{keyword}
 				        or content like #{keyword} )			
+			</otherwise> -->
+			
+			<when test="search_option != 'all' ">
+					where b.writer=m.userid 
+				    and ${search_option} like '%' || #{keyword} || '%'		
+			</when>
+			<otherwise>
+				where b.writer=m.userid 
+				    and (name like '%'||#{keyword}||'%'
+				    or content like '%'||#{keyword}||'%'
+				    or title like '%'||#{keyword}||'%')		
 			</otherwise>
 		</choose>
 	</sql>

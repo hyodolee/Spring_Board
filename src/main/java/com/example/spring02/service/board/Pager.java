@@ -20,7 +20,7 @@ public class Pager {
 	//생성자
 	// Pager(레코드갯수, 출력할페이지번호)
 	public Pager(int count, int curPage) {
-		curBlock = 1; //현재블록 번호
+		//curBlock = 1; //현재블록 번호
 		this.curPage = curPage; //현재 페이지 번호
 		setTotPage(count); //전체 페이지 갯수 계산
 		setPageRange(); // #{start}, #{end} 값 계산
@@ -38,9 +38,11 @@ public class Pager {
 			blockEnd = totPage;
 		}
 		//[이전][다음]을 눌렀을 때 이동할 페이지 번호
-		prevPage=(curBlock==1) ? 1 : (curBlock-1)*BLOCK_SCALE;
-		nextPage=curBlock>totBlock ? (curBlock*BLOCK_SCALE)
-				: (curBlock*BLOCK_SCALE)+1;
+//		prevPage=(curBlock==1) ? 1 : (curBlock-1)*BLOCK_SCALE;
+//		nextPage=curBlock>totBlock ? (curBlock*BLOCK_SCALE)
+//				: (curBlock*BLOCK_SCALE)+1;
+		prevPage=curPage-1;
+		nextPage=curPage+1;
 		//마지막 페이지가 범위를 초과하지 않도록 처리
 		if(nextPage >= totPage) {
 			nextPage=totPage;

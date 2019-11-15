@@ -16,5 +16,6 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <%= application.getRealPath("/") %>
+<P>${pageContext.request.contextPath}</P>
 </body>
 </html>

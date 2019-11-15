@@ -3,6 +3,7 @@ package com.example.spring02.service.board;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,12 @@ public class ReplyServiceImpl implements ReplyService {
 
 	//댓글 목록
 	@Override
-	public List<ReplyDTO> list(int bno) {
-		return replyDao.list(bno);
+	public List<ReplyDTO> list(int bno, int start, int end, HttpSession session) {
+		return replyDao.list(bno, start, end);
 	}
 	@Override
 	public int count(int bno) {
-		return 0;
+		return replyDao.count(bno);
 	}
 //댓글 쓰기	
 	@Override
